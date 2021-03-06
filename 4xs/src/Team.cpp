@@ -25,6 +25,10 @@ string Team::getDescription() {
   return this->description;
 }
 
+string Team::getProject() {
+  return this->project;
+}
+
 int Team::getTeacherId() {
   return this->teacherId;
 }
@@ -55,6 +59,10 @@ void Team::setName(string name) {
 
 void Team::setDescription(string description) {
   this->description = description;
+}
+
+void Team::setProject(string project) {
+  this->project = project;
 }
 
 void Team::setTeacherId(int teacherId) {
@@ -126,8 +134,9 @@ vector<Team> Team::readAll() {
     team.setId(stoi(fields[0]));
     team.setName(fields[1]);
     team.setDescription(fields[2]);
-    team.setTeacherId(stoi(fields[3]));
-    team.setStudentIds(parseStudentsFromString(fields[4]));
+    team.setProject(fields[3]);
+    team.setTeacherId(stoi(fields[4]));
+    team.setStudentIds(parseStudentsFromString(fields[5]));
     
     teams.push_back(team);
   }
@@ -145,6 +154,7 @@ void Team::create() {
     << to_string(id) << DELIMITER
     << name << DELIMITER
     << description << DELIMITER
+    << project << DELIMITER
     << to_string(teacherId) << DELIMITER
     << "-1" << endl;
 
@@ -159,6 +169,7 @@ Team Team::read() {
       this->id = t.getId();
       this->name = t.getName();
       this->description = t.getDescription();
+      this->project = t.getProject();
       this->teacherId = t.getTeacherId();
       this->studentIds = t.getStudentIds();// go fetch from line
     }
@@ -181,6 +192,7 @@ Team Team::update() {
     if (t.getId() == this->id) {
       t.setName(this->name);
       t.setDescription(this->description);
+      t.setProject(this->project);
       t.setTeacherId(this->teacherId);
       t.setStudentIds(this->studentIds);
     }
@@ -189,6 +201,7 @@ Team Team::update() {
       << to_string(t.getId()) << DELIMITER
       << t.getName() << DELIMITER
       << t.getDescription() << DELIMITER
+      << t.getProject() << DELIMITER
       << to_string(t.getTeacherId()) << DELIMITER
       << serializeStudentsToString(t.studentIds) << endl;
   }
@@ -210,6 +223,7 @@ void Team::destroy() {
         << to_string(t.getId()) << DELIMITER
         << t.getName() << DELIMITER
         << t.getDescription() << DELIMITER
+        << t.getProject() << DELIMITER
         << to_string(t.getTeacherId()) << DELIMITER
         << serializeStudentsToString(t.getStudentIds());
     }

@@ -5,7 +5,7 @@
 #include <sstream>
 #include <algorithm>
 #include <limits>
-#include <bits/stdc++.h>
+#include <windows.h>
 
 #include "Team.h"
 #include "Teacher.h"
@@ -124,12 +124,17 @@ namespace teamsmenu {
         cout << "Team Id: " << team.getId() << endl;
         cout << "Team Name: " << team.getName() << endl;
         cout << "Team Description: " << team.getDescription() << endl;
+        cout << "Team Project: " << team.getProject() << endl;
 
         if (team.getTeacherId() < 1) {
           cout << "Team Teacher: [not set]" << endl;
 
         } else {
-          cout << "Team Teacher: " << team.getTeacherId() << endl;
+          int teacherId = team.getTeacherId();
+          cout << "Team Teacher ID: " << teacherId << endl;
+          Teacher teacher = Teacher(teacherId);
+          teacher.read();
+          // cout << "\tTeacher name: " << teacher.getName() << "\n" << "\tTeacher surname: "<< teacher.getSurname() << "\n" << "\tTeacher email: " << teacher.getEmail() << endl;
         }
 
         if (team.getStudentIds().size() <= 0) {
@@ -196,14 +201,19 @@ namespace teamsmenu {
   }
 
   void create() {
-    string name, description;
+    string name, description, project;
     cout << "Enter team name:" << endl;
     cin >> name;
+
     cout << "Enter team description:" << endl;
     cin >> description;
+
+    cout << "Enter team project:" << endl;
+    cin >> project;
     Team newTeam;
     newTeam.setName(name);
     newTeam.setDescription(description);
+    newTeam.setProject(project);
     newTeam.setId(0);
     newTeam.setTeacherId(-1);
     newTeam.setId(getHighestId("teams"));
@@ -225,7 +235,7 @@ namespace teamsmenu {
       cout << "Team with this ID doesn't exist." << endl;
     } else {
       while (showMenu) {
-        string teamName, description, idInIteration;
+        string teamName, description, idInIteration, project;
         int teacherId;
         
         cout << endl;
@@ -233,19 +243,20 @@ namespace teamsmenu {
         cout << "Team Id: " << team.getId() << endl;
         cout << "Team Name: " << team.getName() << endl;
         cout << "Team Description: " << team.getDescription() << endl;
+        cout << "Team Project: " << team.getProject() << endl;
         cout << "Team TeacherId: " << team.getTeacherId() << endl;
         cout << "Team StudentIds: " << serializeIdsToString(team.getStudentIds()) << endl;
         
         cout << endl << "Options:" << endl << "------------" << endl;
         cout << "1. Edit name" << endl;
         cout << "2. Edit description" << endl;
-        cout << "3. Edit teacherId" << endl;
-        cout << "4. Edit studentIds" << endl;
-        cout << "5. Save & Stop editing team" << endl;
+        cout << "3. Edit project" << endl;
+        cout << "4. Edit teacherId" << endl;
+        cout << "5. Edit studentIds" << endl;
+        cout << "6. Save & Stop editing team" << endl;
         cout << endl;
 
         cout << "Enter a number: ";
-
         cin >> userChoice;
 
         if (userChoice == 1) {
@@ -262,11 +273,17 @@ namespace teamsmenu {
 
         } else if (userChoice == 3) {
 
+          cout << "Enter teams's new project: " << endl;
+          cin >> project;
+          team.setProject(project);
+
+        } else if (userChoice == 4) {
+
           cout << "Enter teams's new teacher Id: " << endl;
           cin >> teacherId;
           team.setTeacherId(teacherId);
 
-        } else if (userChoice == 4) {
+        } else if (userChoice == 5) {
 
           vector<int> studentIds;
           string ids;
@@ -285,6 +302,7 @@ namespace teamsmenu {
 
         } else {
           cout << "Returning to previous menu." << endl;
+          Sleep(1000);
           showMenu = false;
         }
 
@@ -1198,7 +1216,7 @@ void start() {
 }
 
 int main() {
+  system("Color 0A");
   start();
-
   return 0;
 }

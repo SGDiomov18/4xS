@@ -23,6 +23,7 @@ private:
   string description;
   int teacherId;
   vector<int> studentIds;
+  string project;
 
 public:
 
@@ -37,6 +38,7 @@ public:
   vector<int> getStudentIds();
   string getStudentIdsAsString();
   vector<Student> getStudents();
+  string getProject();
   
   // Setters
   void setId(int id);
@@ -46,6 +48,7 @@ public:
   void setTeacher(Teacher* teacher);
   void setStudents(vector<Student*> students);
   void setStudentIds(vector<int> studentIds);
+  void setProject(string project);
 
   // CRUD
   static vector<Team> readAll();
