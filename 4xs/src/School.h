@@ -1,10 +1,3 @@
-// has_many :teachers
-// has_many :students
-
-// name :string
-// city :string
-// address :string
-
 #include <string>
 #include <vector>
 

@@ -12,6 +12,10 @@
 
 Team::Team() {}
 Team::Team(int id) : id(id) { }
+/* Team::Team(string teamname) {
+  this->name=name;
+}*/
+
 
 int Team::getId() {
   return this->id;

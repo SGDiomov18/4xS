@@ -1,10 +1,3 @@
-// belongs_to :school
-// has_many :teams
-
-// name :string
-// surname :string
-// email :string
-
 #include <string>
 #include <vector>
 

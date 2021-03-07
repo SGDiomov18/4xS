@@ -1,12 +1,3 @@
-// belongs_to :teacher
-// belongs_to :project
-// has_many :students
-
-// enum :status
-
-// name :string
-// description :string
-
 #include <string>
 #include <vector>
 
@@ -29,6 +20,7 @@ public:
 
   Team();
   Team(int id);
+  Team(string name);
 
   // Getters
   int getId();
