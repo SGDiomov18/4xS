@@ -20,7 +20,7 @@ public:
 
   School();
   School(int id);
-
+  
   // Getters
   int getId();
   string getName();

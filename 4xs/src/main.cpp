@@ -87,7 +87,7 @@ int readId() {
 namespace teamsmenu {
 
   void readAll() {
-    std::vector<Team> teams = Team::readAll();
+    std::vector<Team> teams = Team.readAll();
     
     if (teams.size() < 1) {
       cout << endl << "No teams found." << endl << endl;
@@ -985,6 +985,8 @@ void mainMenu() {
     cin >> option;
     cout << endl;
 
+    system("cls");
+
     switch (option) {
     case 1:
       option = 0;
@@ -1104,8 +1106,9 @@ void mainMenu() {
       cout << "4. Edit student" << endl;
       cout << "5. Delete student" << endl;
       cout << "6. Back" << endl << endl;
-      cout << "*********************************" << endl << endl;
-
+      cout << "*********************************" << endl;
+      
+      cout << "Enter a number: ";
       cin >> option;
 
       while (option < 1 || option > 6){
@@ -1119,7 +1122,7 @@ void mainMenu() {
         studentsmenu::readAll();
         cout << endl;
       }
-      if (option == 2)
+      else if (option == 2)
       {
         cout << endl;
         studentsmenu::read();
@@ -1200,9 +1203,12 @@ void mainMenu() {
       break;
 
     case 5:
-      cout << "Bye :)" << endl << endl;
+      cout << "Thanks for using our program!" << endl << endl;
       exit(0);
       break;
+    default:
+    cout << endl;
+      cout << "Please provide a valid number between 1 and 5 \n";
     }
   }
 }
